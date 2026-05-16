@@ -26,7 +26,7 @@ async function renderDashboard(el) {
     el.innerHTML = `
       <div class="page-header">
         <div>
-          <div class="page-title">Good ${greeting()}, ${State.user.name.split(' ')[0]} 👋</div>
+          <div class="page-title">Good ${greeting()}, ${State.user.name.split(' ')[0]}</div>
           <div class="page-subtitle">${new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' })}</div>
         </div>
         <button class="btn btn-primary" onclick="openCreateTaskModal()">
@@ -212,7 +212,7 @@ function renderProjectCard(p) {
       </div>
       <div class="project-meta">
         <div class="avatar-stack">${memberAvatars}</div>
-        <span>${p.progress}% · ${p.task_stats?.total || 0} tasks</span>
+        <span>${p.progress}% / ${p.task_stats?.total || 0} tasks</span>
       </div>
     </div>`;
 }
@@ -460,9 +460,9 @@ function renderTasksList(tasks) {
           <td class="task-title-cell" onclick="openTaskModal('${t.id}')">${t.title}</td>
           <td>${badgeHtml(t.status, 'status')}</td>
           <td>${badgeHtml(t.priority, 'priority')}</td>
-          <td>${t.project?.name || '—'}</td>
-          <td>${t.assignee ? `<div style="display:flex;align-items:center;gap:6px">${avatarHtml(t.assignee.name, t.assignee.avatar_color, 'sm')}<span>${t.assignee.name}</span></div>` : '—'}</td>
-          <td>${dueDateLabel(t.due_date) || '—'}</td>
+          <td>${t.project?.name || '-'}</td>
+          <td>${t.assignee ? `<div style="display:flex;align-items:center;gap:6px">${avatarHtml(t.assignee.name, t.assignee.avatar_color, 'sm')}<span>${t.assignee.name}</span></div>` : '-'}</td>
+          <td>${dueDateLabel(t.due_date) || '-'}</td>
         </tr>`).join('')}
       </tbody>
     </table>
@@ -668,9 +668,9 @@ async function renderCalendar(el) {
     <div class="page-header"><div class="page-title">Calendar</div></div>
     <div class="calendar-wrap">
       <div class="calendar-header">
-        <button class="btn btn-secondary btn-sm" onclick="changeMonth(-1)">← Prev</button>
+        <button class="btn btn-secondary btn-sm" onclick="changeMonth(-1)">Prev</button>
         <div class="calendar-month" id="cal-month-title"></div>
-        <button class="btn btn-secondary btn-sm" onclick="changeMonth(1)">Next →</button>
+        <button class="btn btn-secondary btn-sm" onclick="changeMonth(1)">Next</button>
       </div>
       <div id="calendar-body"></div>
     </div>`;
@@ -811,7 +811,7 @@ async function renderProfile(el) {
             <div class="profile-avatar" id="profile-avatar-display" style="background:${user.avatar_color}">${user.name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase()}</div>
             <div class="profile-name">${user.name}</div>
             <div class="profile-email">${user.email}</div>
-            <div class="profile-role">${user.role === 'admin' ? '⚡ Admin' : '👤 Member'}</div>
+            <div class="profile-role">${user.role === 'admin' ? 'Admin' : 'Member'}</div>
             <div class="color-picker" id="color-picker">
               ${colors.map(c => `<div class="color-swatch ${c===user.avatar_color?'active':''}" style="background:${c}" onclick="selectColor('${c}')"></div>`).join('')}
             </div>
@@ -827,7 +827,7 @@ async function renderProfile(el) {
           </div>
           <div class="card">
             <div class="card-header"><div class="card-title">Change Password</div></div>
-            <div class="form-group"><label>Current Password</label><input type="password" id="cur-pass" placeholder="••••••••" /></div>
+            <div class="form-group"><label>Current Password</label><input type="password" id="cur-pass" placeholder="Current password" /></div>
             <div class="form-group"><label>New Password</label><input type="password" id="new-pass" placeholder="Min. 6 characters" /></div>
             <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
           </div>

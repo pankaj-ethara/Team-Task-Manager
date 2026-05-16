@@ -315,3 +315,260 @@ textarea { resize: vertical; min-height: 80px; }
 .text-muted { color: var(--text-muted); }
 .mt-4 { margin-top: 16px; }
 .mb-4 { margin-bottom: 16px; }
+
+/* RESPONSIVE POLISH */
+body {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(248,250,252,0) 280px),
+    var(--bg);
+}
+
+button, input, textarea, select { font: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid rgba(79,70,229,0.45);
+  outline-offset: 2px;
+}
+
+.auth-screen { background: linear-gradient(135deg, #111827 0%, #1e293b 60%, #273449 100%); }
+.auth-blob { opacity: 0.16; }
+.auth-card {
+  border: 1px solid rgba(255,255,255,0.65);
+  backdrop-filter: blur(18px);
+}
+
+.sidebar {
+  border-right: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 10px 0 30px rgba(15,23,42,0.06);
+}
+
+.nav-item { min-height: 38px; }
+.nav-item.active {
+  box-shadow: inset 3px 0 0 #818cf8;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 1px 0 rgba(15,23,42,0.03);
+}
+
+.search-input {
+  border: 1px solid transparent;
+}
+
+.page-content {
+  max-width: 1500px;
+  width: 100%;
+}
+
+.page-header {
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(226,232,240,0.85);
+}
+
+.page-title {
+  line-height: 1.15;
+}
+
+.card, .chart-card, .stat-card, .project-card, .team-card, .calendar-wrap, .profile-card {
+  box-shadow: 0 1px 2px rgba(15,23,42,0.03);
+}
+
+.card-header, .section-header {
+  gap: 12px;
+}
+
+.stat-card, .project-card, .team-card, .task-card {
+  will-change: transform;
+}
+
+.kanban-col {
+  border: 1px solid rgba(226,232,240,0.9);
+}
+
+.tasks-table-wrap, .users-table {
+  border-radius: var(--radius);
+}
+
+.tasks-table th, .users-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.tasks-table td:first-child, .users-table td:first-child {
+  min-width: 220px;
+}
+
+.filter-select, .view-toggle {
+  min-height: 36px;
+}
+
+.calendar-header {
+  background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+}
+
+.cal-day {
+  background: #fff;
+}
+
+.modal-container {
+  border: 1px solid rgba(255,255,255,0.8);
+}
+
+@media (max-width: 1100px) {
+  .charts-grid, .two-col, .profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .kanban-board {
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .app {
+    position: relative;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .page-content {
+    padding: 22px 18px;
+  }
+
+  .page-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .page-actions, .page-header > .btn {
+    align-self: flex-start;
+  }
+
+  .search-wrapper {
+    max-width: none;
+  }
+
+  .stats-grid, .projects-grid, .teams-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .task-detail-grid, .task-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .auth-card {
+    max-width: calc(100% - 32px);
+    padding: 28px 22px;
+  }
+
+  .topbar {
+    gap: 10px;
+  }
+
+  .topbar-avatar {
+    display: none;
+  }
+
+  .search-input {
+    font-size: 13px;
+  }
+
+  .filters-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .filters-bar .filter-select,
+  .filters-bar input,
+  .filters-bar select,
+  .view-toggle {
+    width: 100% !important;
+  }
+
+  .view-toggle {
+    margin-left: 0 !important;
+  }
+
+  .view-btn {
+    flex: 1;
+  }
+
+  .calendar-header {
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .calendar-month {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .cal-day {
+    min-height: 72px;
+    padding: 5px;
+  }
+
+  .cal-task-dot {
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+
+  .modal-overlay {
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .modal-container {
+    max-height: calc(100vh - 24px);
+  }
+
+  .modal-header, .modal-body {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .modal-footer .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .toast-container {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .toast {
+    max-width: none;
+    min-width: 0;
+    width: 100%;
+  }
+}

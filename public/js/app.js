@@ -70,7 +70,7 @@ function timeAgo(dateStr) {
 }
 
 function formatDate(d) {
-  if (!d) return '—';
+  if (!d) return '-';
   return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
@@ -303,7 +303,7 @@ function renderTaskModal(task, comments) {
             </select>
           </div>
           <div class="task-meta-item"><label>Due Date</label><div>${formatDate(task.due_date)}</div></div>
-          <div class="task-meta-item"><label>Project</label><div>${task.project?.name || '—'}</div></div>
+          <div class="task-meta-item"><label>Project</label><div>${task.project?.name || '-'}</div></div>
         </div>
         <div class="comments-section">
           <h4>Comments (${comments.length})</h4>
@@ -324,7 +324,7 @@ function renderTaskModal(task, comments) {
         </div>
         <div class="card">
           <div style="font-size:12px;font-weight:600;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Created by</div>
-          ${task.creator ? `<div style="display:flex;align-items:center;gap:8px">${avatarHtml(task.creator.name, task.creator.avatar_color)}<span>${task.creator.name}</span></div>` : '—'}
+          ${task.creator ? `<div style="display:flex;align-items:center;gap:8px">${avatarHtml(task.creator.name, task.creator.avatar_color)}<span>${task.creator.name}</span></div>` : '-'}
           <div style="font-size:12px;color:var(--text-muted);margin-top:8px">${timeAgo(task.created_at)}</div>
         </div>
         <div style="margin-top:16px;display:flex;gap:8px">
@@ -449,6 +449,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Logout
   document.getElementById('logout-btn').addEventListener('click', logout);
+
+  // Sidebar toggle
+  document.getElementById('sidebar-toggle').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => document.getElementById('sidebar').classList.remove('open'));
+  });
 
   // Modal close
   document.getElementById('modal-close').addEventListener('click', Modal.close);
